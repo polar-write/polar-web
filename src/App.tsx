@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'codemirror/lib/codemirror.css';
+import 'polar-tui-editor/dist/toastui-editor.css';
+
+import { Editor } from 'polar-tui-editor-react';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Editor
+        initialValue={`# A wonderful new note\nKeep calm and write something`}
+        height="100vh"
+        initialEditType="markdown"
+        useCommandShortcut={true}
+        hideModeSwitch
+        toolbarItems={[
+          'heading',
+          'bold',
+          'italic',
+          'divider',
+          'hr',
+          'quote',
+          'divider',
+          'ul',
+          'ol',
+          'task',
+          'divider',
+          'image',
+          'link',
+        ]}
+      />
     </div>
   );
 }
