@@ -1,7 +1,29 @@
 .App {
+  background-color: #FCF6E5;
+}
+
+.CodeMirror {
+  background-color: #FCF6E5;
+}
+
+.te-md-container .CodeMirror {
+  font-family: 'Mulish', sans-serif !important;
+  font-size: 15px;
+}
+
+.tui-editor-defaultUI {
+  border: none;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Mulish', sans-serif;
+}
+
+.te-toolbar-section {
+  height: unset;
 }
 
 .te-markdown-tab-section {
+  height: unset !important;
   display: none !important;
 }
 
@@ -16,20 +38,21 @@
 }
 
 .tui-editor-defaultUI-toolbar {
-  background-color: #424242;
+  background-color: #FCF6E5;
+  height: unset;
 }
 
 .tui-editor-defaultUI-toolbar button {
   border: none;
-  background-color: #212121;
+  background-color: #FCF6E5;
   border-radius: 2px;
 }
 
 .tui-editor-defaultUI-toolbar button:hover, .tui-editor-defaultUI-toolbar button:active, .tui-editor-defaultUI-toolbar button.active {
   border: none;
-  background-color: #424242;
+  background-color: #E7E7E7;
 }
 
 .tui-toolbar-icons {
-  filter: grayscale(1) brightness(2);
+  /* filter: grayscale(1) brightness(2); */
 }
