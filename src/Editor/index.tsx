@@ -21,9 +21,13 @@ function PolarEditor() {
 
   const note = notes.find(note => note.id === id && !note.removedAt);
 
+  const isMobile = (windowSize.width && windowSize.width < 769);
+
   useEffect(() => {
     setShowMenu(false);
+    isMobile && toggleShowList(false);
     (editorRef.current as any)?.getInstance().focus();
+    (editorRef.current as any)?.getInstance().setMarkdown(note?.content);
   }, [id]);
 
   useEffect(() => {
@@ -64,8 +68,6 @@ function PolarEditor() {
   if (!note) {
     return <NotFound />
   }
-
-  const isMobile = (windowSize.width && windowSize.width < 769);
 
   return (
     <div className="editor-wrapper">

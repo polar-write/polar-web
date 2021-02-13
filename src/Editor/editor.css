@@ -14,6 +14,18 @@
   padding-right: 100px;
 }
 
+.tui-editor-defaultUI pre.CodeMirror-line {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+@media (max-width: 769px) {
+  .tui-editor-defaultUI pre.CodeMirror-line {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
 .CodeMirror-scroll {
   padding-bottom: 0px !important;
 }
