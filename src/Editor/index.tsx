@@ -3,7 +3,7 @@ import 'codemirror/lib/codemirror.css';
 import 'polar-tui-editor/dist/toastui-editor.css';
 import {useParams, useHistory} from 'react-router-dom';
 import { Editor } from 'polar-tui-editor-react';
-import {ChevronLeft, ChevronRight, MoreHorizontal, X, Trash2, Copy, Share, CloudOff, Cloud} from 'react-feather';
+import {ChevronLeft, ChevronRight, MoreHorizontal, X, Trash2, Copy, Share, CloudOff, Cloud, Smartphone} from 'react-feather';
 import toast from 'react-hot-toast';
 
 import {useStore} from '../store';
@@ -107,6 +107,9 @@ function PolarEditor() {
           </button>
           <button className="sync-button" onClick={() => history.replace('/')}>
             {!auth ? <CloudOff /> : <Cloud />}
+          </button>
+          <button className="app-button" onClick={() => history.replace('/download')}>
+            <Smartphone />
           </button>
         </>
       )}

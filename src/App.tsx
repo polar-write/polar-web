@@ -11,6 +11,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Editor from './Editor';
 import NoteList from './NoteList';
 import Default from './Default';
+import Download from './Download';
 import './App.css';
 import {useWindowSize} from './util';
 import {INote, useStore} from './store';
@@ -102,6 +103,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Default />
+            </Route>
+            <Route path="/download" exact>
+              <Download />
             </Route>
             <Route path="/notes/:id">
               <Editor />
