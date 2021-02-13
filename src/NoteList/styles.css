@@ -15,8 +15,8 @@
 }
 
 .list-electron .list-header {
-  padding: 30px 15px 10px !important;
-  max-height: 76px !important;
+  padding: 35px 15px 10px !important;
+  max-height: 81px !important;
 }
 
 .search-wrap {
@@ -46,7 +46,7 @@
 }
 
 .list-electron .search-icon {
-  top: 35px;
+  top: 40px;
 }
 
 .search-input {
@@ -87,7 +87,7 @@
 }
 
 .list-electron .note-list {
-  height: calc(100vh - 76px) !important;
+  height: calc(100vh - 81px) !important;
 }
 
 .note-date {
