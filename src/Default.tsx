@@ -15,7 +15,7 @@ const Default: React.FC<DefaultProps> = () => {
   const windowSize = useWindowSize();
 
   async function handleLogin() {
-    const user = await signInWithGithub();
+    const user: any = await signInWithGithub();
     if (user) {
       setAuth(user);
       toast.success(`You logged in as ${user.displayName}!`);

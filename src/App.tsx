@@ -6,6 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import firebase from 'firebase';
 
 import Editor from './Editor';
 import NoteList from './NoteList';
@@ -18,7 +19,17 @@ import {streamNotes, uploadNotes} from './firebase/firestore';
 
 function App() {
   const windowSize = useWindowSize();
-  const {showList, toggleShowList, auth, notes, setNotes, setLastSync} = useStore();
+  const {showList, toggleShowList, auth, notes, setNotes, setLastSync, setAuth} = useStore();
+
+  useEffect(() => {
+    firebase.auth().getRedirectResult().then(rs => {
+      console.log(rs)
+      if (rs.user) {
+        setAuth(rs.user);
+        toast.success(`You logged in as ${rs.user.displayName}!`);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (windowSize.width && windowSize.width < 769) {

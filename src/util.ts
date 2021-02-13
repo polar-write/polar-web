@@ -41,3 +41,8 @@ export function useWindowSize() {
 
   return windowSize;
 }
+
+export const isElectron = () => {
+  const userAgent = navigator.userAgent.toLowerCase();
+  return userAgent.indexOf(' electron/') > -1;
+}
