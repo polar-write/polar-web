@@ -7,23 +7,32 @@ export interface INote {
   content: string;
   updatedAt: Date;
   createdAt: Date;
+  removedAt?: Date | null;
 }
 
 type State = {
+  auth: any;
+  setAuth: (auth: any) => void;
   showList: boolean;
   toggleShowList: (show: boolean) => void;
   notes: INote[];
+  setNotes: (notes: INote[]) => void;
   newNote: () => string;
   editNote: (id: string, content: string) => void;
   duplicateNote: (content: string) => string;
   deleteNote: (id: string) => void;
+  lastSync: Date | null;
+  setLastSync: () => void;
 }
 
 export const useStore = create<State>(
   persist(set => ({
+    auth: null,
+    setAuth: (data) => set((state: State) => ({...state, auth: data})),
     showList: true,
     toggleShowList: (show) => set((state: State) => ({...state, showList: show})),
     notes: [],
+    setNotes: (notes) => set((state: State) => ({...state, notes})),
     newNote: () => {
       const id = shortid();
       set((state: State) => ({
@@ -62,13 +71,19 @@ export const useStore = create<State>(
         ...note,
         content,
         updatedAt: new Date(),
-      } : note).sort((a, b) => Number(b.updatedAt) - Number(a.updatedAt)),
+      } : note),
     })),
     deleteNote: (id) => set((state: State) => ({
       ...state,
-      notes: state.notes.filter(note => note.id !== id),
-    }))
+      notes: state.notes.map(note => note.id === id ? {
+        ...note,
+        updatedAt: new Date(),
+        removedAt: new Date(),
+      } : note),
+    })),
+    lastSync: null,
+    setLastSync: () => set((state: State) => ({...state, lastSync: new Date()})),
   }), {
     name: 'polar',
-  })
+  }),
 );

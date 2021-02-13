@@ -3,7 +3,7 @@ import 'codemirror/lib/codemirror.css';
 import 'polar-tui-editor/dist/toastui-editor.css';
 import {useParams, useHistory} from 'react-router-dom';
 import { Editor } from 'polar-tui-editor-react';
-import {ChevronLeft, ChevronRight, MoreHorizontal, X, Trash2, Copy, Share} from 'react-feather';
+import {ChevronLeft, ChevronRight, MoreHorizontal, X, Trash2, Copy, Share, CloudOff, Cloud} from 'react-feather';
 import toast from 'react-hot-toast';
 
 import {useStore} from '../store';
@@ -15,23 +15,23 @@ function PolarEditor() {
   const editorRef = useRef(null);
   const history = useHistory();
   const {id} = useParams<any>();
-  const {notes, editNote, showList, toggleShowList, deleteNote, duplicateNote} = useStore();
+  const {notes, editNote, showList, toggleShowList, deleteNote, duplicateNote, auth} = useStore();
   const windowSize = useWindowSize();
   const [showMenu, setShowMenu] = useState(false);
 
+  const note = notes.find(note => note.id === id && !note.removedAt);
+
   useEffect(() => {
     setShowMenu(false);
-    const note = notes.find(note => note.id === id);
-    (editorRef.current as any)?.getInstance().setMarkdown(note?.content);
+    const n = notes.find(note => note.id === id);
+    (editorRef.current as any)?.getInstance().setMarkdown(n?.content);
     (editorRef.current as any)?.getInstance().focus();
-  }, [id]);
+  }, [id, note?.updatedAt]);
 
   function handleChange() {
     const value = (editorRef.current as any).getInstance().getMarkdown();
     editNote(id, value);
   }
-
-  const note = notes.find(note => note.id === id);
 
   function handleDelete() {
     if (note) {
@@ -94,9 +94,14 @@ function PolarEditor() {
         </button>
       )}
       {(!showList || !isMobile) && (
-        <button className="menu-button" onClick={() => setShowMenu(!showMenu)}>
-          {!showMenu ? <MoreHorizontal /> : <X />}
-        </button>
+        <>
+          <button className="menu-button" onClick={() => setShowMenu(!showMenu)}>
+            {!showMenu ? <MoreHorizontal /> : <X />}
+          </button>
+          <button className="sync-button" onClick={() => history.replace('/sync')}>
+            {!auth ? <CloudOff /> : <Cloud />}
+          </button>
+        </>
       )}
       {showMenu && (
         <div className="menu-list">

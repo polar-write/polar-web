@@ -43,7 +43,11 @@ const NoteList: React.FC<NoteListProps> = () => {
     setSearchValue((e.target as any).value);
   }
 
-  const filteredNotes = searchValue?.length ? notes.filter((note: INote) => (note.content).toLowerCase().includes(searchValue.toLowerCase())) : notes;
+  const filteredNotes = notes.filter(note => !note.removedAt).sort((a, b) => (new Date(b.updatedAt) as any) - (new Date(a.updatedAt) as any));
+
+  const searchNotes = searchValue?.length
+    ? filteredNotes.filter((note: INote) => (note.content).toLowerCase().includes(searchValue.toLowerCase()))
+    : filteredNotes;
 
   return (
     <div className="list-wrapper">
@@ -57,7 +61,7 @@ const NoteList: React.FC<NoteListProps> = () => {
         </button>
       </div>
       <ul className="note-list">
-        {filteredNotes.map(note => (
+        {searchNotes.map(note => (
           <NoteItem key={note.id} note={note} />
         ))}
       </ul>
