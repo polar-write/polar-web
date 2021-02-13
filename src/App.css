@@ -2,57 +2,64 @@
   background-color: #FCF6E5;
 }
 
-.CodeMirror {
+.default-wrapper {
   background-color: #FCF6E5;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.te-md-container .CodeMirror {
-  font-family: 'Mulish', sans-serif !important;
-  font-size: 15px;
+.default-logo {
+  width: 300px;
+  height: 300px;
 }
 
-.tui-editor-defaultUI {
-  border: none;
-  width: 100vw;
-  overflow: hidden;
-  font-family: 'Mulish', sans-serif;
+.not-found {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 14px;
 }
 
-.te-toolbar-section {
-  height: unset;
-}
-
-.te-markdown-tab-section {
-  height: unset !important;
-  display: none !important;
-}
-
-.te-toolbar-section {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.Resizer {
+  background: #000;
+  opacity: 0.2;
   z-index: 1;
-  border-top: 1px solid #e5e5e5;
-  border-bottom: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
 }
 
-.tui-editor-defaultUI-toolbar {
-  background-color: #FCF6E5;
-  height: unset;
+.Resizer:hover {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
 }
 
-.tui-editor-defaultUI-toolbar button {
-  border: none;
-  background-color: #FCF6E5;
-  border-radius: 2px;
+.Resizer.vertical {
+  width: 1px;
+  margin: 0 -5px;
+  border-left: 5px solid rgba(255, 255, 255, 0);
+  border-right: 5px solid rgba(255, 255, 255, 0);
+  cursor: col-resize;
 }
 
-.tui-editor-defaultUI-toolbar button:hover, .tui-editor-defaultUI-toolbar button:active, .tui-editor-defaultUI-toolbar button.active {
-  border: none;
-  background-color: #E7E7E7;
+.Resizer.vertical:hover {
+  border-left: 5px solid rgba(0, 0, 0, 0.5);
+  border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+.Resizer.disabled:hover {
+  border-color: transparent;
 }
 
-.tui-toolbar-icons {
-  /* filter: grayscale(1) brightness(2); */
+.toaster {
+  font-size: 14px;
+  background-color: #FBF6E7;
 }

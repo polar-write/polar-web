@@ -1,0 +1,106 @@
+.list-wrapper {
+  border-right: 1px solid #EBE5D4;
+  background-color: #FCF6E5;
+  height: 100vh;
+}
+
+.list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #EBE5D4;
+  max-height: 46px;
+}
+
+.search-wrap {
+  flex-grow: 1;
+}
+
+.tui-md-heading1 {
+  line-height: 50px;
+}
+
+.tui-md-heading2 {
+  line-height: 40px;
+}
+
+.tui-md-heading3 {
+  line-height: 30px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 22px;
+  width: 15px;
+  height: 15px;
+  color: #8F897D;
+}
+
+.search-input {
+  border: 1.5px solid #CACACA;
+  outline: none;
+  background-color: #FDFDF6;
+  border-radius: 4px;
+  padding: 3px 10px 3px 30px;
+  flex-grow: 1;
+  font-weight: 600;
+  margin-right: 10px;
+  font-family: 'Mulish', sans-serif;
+}
+
+.new-note {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #8F897D;
+  padding: 0px;
+}
+
+.new-note svg {
+  width: 20px;
+  height: 20px;
+}
+
+.new-note:hover {
+  opacity: 0.7;
+}
+
+.note-list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  overflow-x: scroll;
+  height: calc(100vh - 46px);
+}
+
+.note-date {
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #8F897D;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+.note-item-link {
+  text-decoration: none;
+}
+
+.note-item-container {
+  padding: 10px 15px;
+  border-bottom: 1px solid #EBE5D4;
+}
+
+.note-item-container.active {
+  background-color: #F1F1E7;
+}
+
+.note-excerpt {
+  color: #333;
+  font-size: 14px;
+  margin: 0px;
+}

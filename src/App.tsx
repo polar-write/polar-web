@@ -1,46 +1,54 @@
-import React, {useRef} from 'react';
-import 'codemirror/lib/codemirror.css';
-import 'polar-tui-editor/dist/toastui-editor.css';
+import React, {useEffect} from 'react';
+import SplitPane from 'react-split-pane';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
-import { Editor } from 'polar-tui-editor-react';
-
+import Editor from './Editor';
+import NoteList from './NoteList';
+import Default from './Default';
 import './App.css';
+import {useWindowSize} from './util';
+import {useStore} from './store';
 
 function App() {
-  const editorRef = useRef(null);
+  const windowSize = useWindowSize();
+  const {showList, toggleShowList} = useStore();
 
-  function handleChange() {
-    const value = (editorRef.current as any).getInstance().getMarkdown();
-    localStorage.setItem('polar', value || '');
-  }
+  useEffect(() => {
+    if (windowSize.width && windowSize.width < 769) {
+      toggleShowList(false);
+    } else if (windowSize.width && windowSize.width >= 769) {
+      toggleShowList(true);
+    }
+  }, [windowSize, toggleShowList]);
 
   return (
-    <div className="App">
-      <Editor
-        ref={editorRef}
-        initialValue={localStorage.getItem('polar') || `# A wonderful new note\nKeep calm and write something`}
-        height="100vh"
-        initialEditType="markdown"
-        useCommandShortcut={true}
-        hideModeSwitch
-        onChange={handleChange}
-        toolbarItems={[
-          'heading',
-          'bold',
-          'italic',
-          'divider',
-          'hr',
-          'quote',
-          'divider',
-          'ul',
-          'ol',
-          'task',
-          'divider',
-          'image',
-          'link',
-        ]}
-      />
-    </div>
+    <Router>
+      <div className="App">
+        <SplitPane
+          split="vertical"
+          allowResize={showList}
+          defaultSize={showList ? '250px' : 0}
+          minSize={showList ? 250 : 0}
+          maxSize={500}
+        >
+          {showList ? <NoteList /> : <div />}
+          <Switch>
+            <Route path="/" exact>
+              <Default />
+            </Route>
+            <Route path="/notes/:id">
+              <Editor />
+            </Route>
+          </Switch>
+        </SplitPane>
+        <Toaster toastOptions={{className: 'toaster'}} />
+      </div>
+    </Router>
   );
 }
 

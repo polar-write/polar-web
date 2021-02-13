@@ -1,0 +1,127 @@
+.editor-wrapper {
+}
+
+.CodeMirror {
+  background-color: #FCF6E5;
+}
+
+.tui-editor-defaultUI .CodeMirror-scroll {
+  padding-top: 30px;
+}
+
+.tui-editor-defaultUI pre.CodeMirror-line {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.CodeMirror-scroll {
+  padding-bottom: 0px !important;
+}
+
+.te-md-container .CodeMirror {
+  font-family: 'Mulish', sans-serif !important;
+  font-size: 15px;
+}
+
+.tui-editor-defaultUI {
+  border: none;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Mulish', sans-serif;
+}
+
+.te-markdown-tab-section {
+  display: none !important;
+}
+
+.te-toolbar-section {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: none;
+}
+
+.tui-editor-defaultUI-toolbar {
+  background-color: #FCF6E5;
+}
+
+.tui-editor-defaultUI-toolbar button {
+  border: none;
+  background-color: #FCF6E5;
+  border-radius: 2px;
+}
+
+.tui-editor-defaultUI-toolbar button:hover, .tui-editor-defaultUI-toolbar button:active, .tui-editor-defaultUI-toolbar button.active {
+  border: none;
+  background-color: #c4b78f;
+}
+
+.tui-toolbar-icons {
+  /* filter: grayscale(1) brightness(2); */
+}
+
+:not(.auto-height) > .tui-editor-defaultUI > .te-editor-section {
+  margin-bottom: 32px !important;
+}
+
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  z-index: 11;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.menu-button {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  z-index: 11;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.menu-button:hover, .back-button:hover {
+  background-color: #c4b78f;
+}
+
+.menu-list {
+  position: fixed;
+  top: 10px;
+  right: 45px;
+  z-index: 11;
+}
+
+.menu-item {
+  display: inline-flex;
+  align-items: center;
+  margin: 0px 2px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #FCF6E5;
+}
+
+.menu-item:hover {
+  background-color: #c4b78f;
+}
+
+.menu-item svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+}
+
+.menu-item span {
+  font-family: 'Mulish', sans-serif !important;
+  font-size: 10px; 
+  text-transform: uppercase;
+  font-weight: 700;
+  
+}
