@@ -58,10 +58,10 @@ function App() {
         };
         const found = notesToSync.find(item => item.id === note.id);
         if (!found) {
-          notesToSync.push(note);
+          notesToSync.push({...note, justSynced: true});
           needSync = true;
         } else if (new Date(found.updatedAt) < new Date(note.updatedAt)) {
-          notesToSync = notesToSync.map(item => item.id === note.id ? note : item);
+          notesToSync = notesToSync.map(item => item.id === note.id ? {...note, justSynced: true} : item);
           needSync = true;
         }
       });

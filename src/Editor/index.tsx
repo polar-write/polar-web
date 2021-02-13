@@ -15,7 +15,7 @@ function PolarEditor() {
   const editorRef = useRef(null);
   const history = useHistory();
   const {id} = useParams<any>();
-  const {notes, editNote, showList, toggleShowList, deleteNote, duplicateNote, auth} = useStore();
+  const {notes, editNote, showList, toggleShowList, deleteNote, duplicateNote, auth, removeJustSynced} = useStore();
   const windowSize = useWindowSize();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -23,10 +23,15 @@ function PolarEditor() {
 
   useEffect(() => {
     setShowMenu(false);
-    const n = notes.find(note => note.id === id);
-    (editorRef.current as any)?.getInstance().setMarkdown(n?.content);
     (editorRef.current as any)?.getInstance().focus();
-  }, [id, note?.updatedAt]);
+  }, [id]);
+
+  useEffect(() => {
+    if (note?.justSynced) {
+      (editorRef.current as any)?.getInstance().setMarkdown(note?.content);
+      removeJustSynced(note.id);
+    }
+  }, [note?.justSynced]);
 
   function handleChange() {
     const value = (editorRef.current as any).getInstance().getMarkdown();

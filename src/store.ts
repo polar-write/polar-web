@@ -8,6 +8,7 @@ export interface INote {
   updatedAt: Date;
   createdAt: Date;
   removedAt?: Date | null;
+  justSynced?: boolean;
 }
 
 type State = {
@@ -19,6 +20,7 @@ type State = {
   setNotes: (notes: INote[]) => void;
   newNote: () => string;
   editNote: (id: string, content: string) => void;
+  removeJustSynced: (id: string) => void;
   duplicateNote: (content: string) => string;
   deleteNote: (id: string) => void;
   lastSync: Date | null;
@@ -79,6 +81,13 @@ export const useStore = create<State>(
         ...note,
         updatedAt: new Date(),
         removedAt: new Date(),
+      } : note),
+    })),
+    removeJustSynced: (id) => set((state: State) => ({
+      ...state,
+      notes: state.notes.map(note => note.id === id ? {
+        ...note,
+        justSynced: false,
       } : note),
     })),
     lastSync: null,
