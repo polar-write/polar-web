@@ -49,9 +49,12 @@ const NoteList: React.FC<NoteListProps> = () => {
     ? filteredNotes.filter((note: INote) => (note.content).toLowerCase().includes(searchValue.toLowerCase()))
     : filteredNotes;
 
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isElectron = userAgent.indexOf(' electron/') > -1;
+
   return (
-    <div className="list-wrapper">
-      <div className="list-header">
+    <div className={`list-wrapper ${isElectron && 'list-electron'}`}>
+      <div className='list-header'>
         <div className="search-wrap">
           <Search className="search-icon" />
           <input placeholder="Polar Search" className="search-input" onChange={handleSearch} value={searchValue} />

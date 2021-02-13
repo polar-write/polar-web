@@ -10,6 +10,7 @@
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  -webkit-app-region: drag;
 }
 
 .default-logo {

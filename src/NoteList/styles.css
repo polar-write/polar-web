@@ -11,6 +11,12 @@
   padding: 10px 15px;
   border-bottom: 1px solid #EBE5D4;
   max-height: 46px;
+  -webkit-app-region: drag;
+}
+
+.list-electron .list-header {
+  padding: 50px 15px 10px !important;
+  max-height: 96px !important;
 }
 
 .search-wrap {
@@ -37,6 +43,10 @@
   width: 15px;
   height: 15px;
   color: #8F897D;
+}
+
+.list-electron .search-icon {
+  top: 55px;
 }
 
 .search-input {
@@ -74,6 +84,10 @@
   margin: 0px;
   overflow-x: scroll;
   height: calc(100vh - 46px);
+}
+
+.list-electron .note-list {
+  height: calc(100vh - 96px) !important;
 }
 
 .note-date {
