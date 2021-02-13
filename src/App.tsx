@@ -10,7 +10,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import Editor from './Editor';
 import NoteList from './NoteList';
 import Default from './Default';
-import Sync from './Sync';
 import './App.css';
 import {useWindowSize} from './util';
 import {INote, useStore} from './store';
@@ -92,9 +91,6 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Default />
-            </Route>
-            <Route path="/sync" exact>
-              <Sync />
             </Route>
             <Route path="/notes/:id">
               <Editor />

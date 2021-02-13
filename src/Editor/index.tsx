@@ -98,7 +98,7 @@ function PolarEditor() {
           <button className="menu-button" onClick={() => setShowMenu(!showMenu)}>
             {!showMenu ? <MoreHorizontal /> : <X />}
           </button>
-          <button className="sync-button" onClick={() => history.replace('/sync')}>
+          <button className="sync-button" onClick={() => history.replace('/')}>
             {!auth ? <CloudOff /> : <Cloud />}
           </button>
         </>
