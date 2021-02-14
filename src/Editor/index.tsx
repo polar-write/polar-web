@@ -7,7 +7,7 @@ import {ChevronLeft, ChevronRight, MoreHorizontal, X, Trash2, Copy, Share, Cloud
 import toast from 'react-hot-toast';
 
 import {useStore} from '../store';
-import {useWindowSize} from '../util';
+import {isElectron, useWindowSize} from '../util';
 import './editor.css';
 import NotFound from '../NotFound';
 
@@ -108,9 +108,11 @@ function PolarEditor() {
           <button className="sync-button" onClick={() => history.replace('/')}>
             {!syncCode ? <CloudOff /> : <Cloud />}
           </button>
-          <button className="app-button" onClick={() => history.replace('/download')}>
-            <Smartphone />
-          </button>
+          {!isElectron && (
+            <button className="app-button" onClick={() => history.replace('/download')}>
+              <Smartphone />
+            </button>
+          )}
         </>
       )}
       {showMenu && (
