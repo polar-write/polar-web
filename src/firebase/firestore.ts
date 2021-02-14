@@ -4,15 +4,37 @@ import { INote } from '../store';
 
 const db = firebase.firestore();
 
-export const getNotes = (uid: string) => {
+export const updateSyncCode = async (uid: string, syncCode?: string | null) => {
+  try {
+    if (syncCode === null) {
+      await db.collection('syncCodes').doc(uid).delete();
+    } else {
+      const docData = await db.collection('syncCodes').doc(uid);
+      await docData.set({syncCode: syncCode || uid});
+      toast.success('Register success, ready to sync!');
+    }
+  } catch (error) {
+    toast.error(error.message);
+  }
+}
+
+export const getSyncCode = async (uid: string) => {
+  const docData = await db.collection('syncCodes').doc(uid).get();
+  if (!docData.exists) {
+    return null;
+  }
+  return ((docData.data() as any).syncCode as string);
+}
+
+export const getNotes = (syncCode: string) => {
   return db.collection('notes')
-      .doc(uid)
+      .doc(syncCode)
       .collection('notes')
       .get();
 }
 
-export const uploadNotes = async (uid: string, notes: INote[]) => {
-  const doc = db.collection('notes').doc(uid);
+export const uploadNotes = async (syncCode: string, notes: INote[]) => {
+  const doc = db.collection('notes').doc(syncCode);
   
   const docData = await doc.get();
   
@@ -41,9 +63,9 @@ export const uploadNotes = async (uid: string, notes: INote[]) => {
   return false;
 }
 
-export const streamNotes = (uid: string, observer: any) => {
+export const streamNotes = (syncCode: string, observer: any) => {
   return db.collection('notes')
-      .doc(uid)
+      .doc(syncCode)
       .collection('notes')
       .orderBy('updatedAt')
       .onSnapshot(observer);

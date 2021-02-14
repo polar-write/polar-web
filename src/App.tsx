@@ -14,22 +14,13 @@ import Default from './Default';
 import Download from './Download';
 import './App.css';
 import {useStore} from './store';
-import './firebase/init.ts';
 import useSyncNote from './firebase/useSyncNote';
+import { useAuth } from './firebase/auth';
 
 function App() {
   const {showList} = useStore();
+  useAuth();
   useSyncNote();
-
-  // useEffect(() => {
-  //   firebase.auth().getRedirectResult().then(rs => {
-  //     console.log(rs)
-  //     if (rs.user) {
-  //       setAuth(rs.user);
-  //       toast.success(`You logged in as ${rs.user.displayName}!`);
-  //     }
-  //   });
-  // }, []);
 
   return (
     <Router>

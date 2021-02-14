@@ -1,21 +1,30 @@
+import {useEffect} from 'react';
 import firebase from 'firebase';
 import toast from 'react-hot-toast';
 
-export async function signInWithGithub() {
-  const provider = new firebase.auth.GithubAuthProvider();
+import { useStore } from '../store';
+import { getSyncCode } from './firestore';
 
-  try {
-    // await firebase.auth().signInWithRedirect(provider);
-    // const result = await firebase.auth().getRedirectResult();
-    const result = await firebase.auth().signInWithPopup(provider);
-    const {uid, displayName, email, photoURL} = (result.user as any);
-    return {uid, displayName, email, photoURL};
-    // return null;
-  } catch (error) {
-    toast.error(error.message);
+export function useAuth() {
+  const {auth, setAuth, setSyncCode} = useStore();
+
+  async function startAuth() {
+    if (!firebase.auth().currentUser || !auth) {
+      try {
+        const result = await firebase.auth().signInAnonymously();
+        const uid = (result.user as any).uid;
+        setAuth({uid});
+        const syncCode = await getSyncCode(uid);
+        if (syncCode) {
+          setSyncCode(syncCode);
+        }
+      } catch (error) {
+        toast(error.message);
+      }
+    }
   }
-}
 
-export async function signOut() {
-  firebase.auth().signOut();
+  useEffect(() => {
+    startAuth();
+  }, []);
 }

@@ -7,7 +7,7 @@ import {useWindowSize} from '../util';
 
 function useSyncNote() {
   const windowSize = useWindowSize();
-  const {toggleShowList, auth, notes, setNotes, setLastSync} = useStore();
+  const {toggleShowList, syncCode, notes, setNotes, setLastSync, auth} = useStore();
 
   useEffect(() => {
     if (windowSize.width && windowSize.width < 769) {
@@ -18,11 +18,11 @@ function useSyncNote() {
   }, [windowSize, toggleShowList]);
 
   useEffect(() => {
-    if (!auth) {
+    if (!syncCode || !auth) {
       return;
     }
 
-    const unsubscribe = streamNotes(auth?.uid, { next: (querySnapshot: any) => {
+    const unsubscribe = streamNotes(syncCode, { next: (querySnapshot: any) => {
       let notesToSync = notes;
       let needSync = false;
       console.log('check sync', querySnapshot.docs.length)
@@ -54,7 +54,7 @@ function useSyncNote() {
     }});
 
     const intervalId = setInterval(async () => {
-      const synced = await uploadNotes(auth?.uid, notes);
+      const synced = await uploadNotes(syncCode, notes);
       if (synced) {
         setLastSync();
       }
@@ -64,7 +64,7 @@ function useSyncNote() {
       unsubscribe();
       clearInterval(intervalId);
     };
-  }, [auth, notes, setNotes, setLastSync]);
+  }, [syncCode, notes, setNotes, setLastSync, auth]);
 }
 
 export default useSyncNote;

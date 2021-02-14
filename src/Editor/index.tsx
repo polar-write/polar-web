@@ -15,7 +15,7 @@ function PolarEditor() {
   const editorRef = useRef(null);
   const history = useHistory();
   const {id} = useParams<any>();
-  const {notes, editNote, showList, toggleShowList, deleteNote, duplicateNote, auth, removeJustSynced} = useStore();
+  const {notes, editNote, showList, toggleShowList, deleteNote, duplicateNote, syncCode, removeJustSynced} = useStore();
   const windowSize = useWindowSize();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -106,7 +106,7 @@ function PolarEditor() {
             {!showMenu ? <MoreHorizontal /> : <X />}
           </button>
           <button className="sync-button" onClick={() => history.replace('/')}>
-            {!auth ? <CloudOff /> : <Cloud />}
+            {!syncCode ? <CloudOff /> : <Cloud />}
           </button>
           <button className="app-button" onClick={() => history.replace('/download')}>
             <Smartphone />

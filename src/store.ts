@@ -14,6 +14,8 @@ export interface INote {
 type State = {
   auth: any;
   setAuth: (auth: any) => void;
+  syncCode: string | null;
+  setSyncCode: (code: string | null) => void;
   showList: boolean;
   toggleShowList: (show: boolean) => void;
   notes: INote[];
@@ -30,9 +32,13 @@ type State = {
 export const useStore = create<State>(
   persist(set => ({
     auth: null,
+    syncCode: null,
     setAuth: (data) => set((state: State) => ({...state, auth: data})),
+    setSyncCode: (code) => set((state: State) => ({...state, syncCode: code})),
+
     showList: true,
     toggleShowList: (show) => set((state: State) => ({...state, showList: show})),
+
     notes: [],
     setNotes: (notes) => set((state: State) => ({...state, notes})),
     newNote: () => {
@@ -90,6 +96,7 @@ export const useStore = create<State>(
         justSynced: false,
       } : note),
     })),
+
     lastSync: null,
     setLastSync: () => set((state: State) => ({...state, lastSync: new Date()})),
   }), {

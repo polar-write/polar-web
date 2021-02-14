@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './firebase/init.ts';
 import App from './App';
 
 ReactDOM.render(
