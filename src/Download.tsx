@@ -23,8 +23,8 @@ const Download = () => {
           <h2>Polar for Mobile</h2>
           <img src={mobileImage} alt="polar-mobile" />
           <div className="download-buttons">
-            <button>Android</button>
-            <button>iPhone and iPad</button>
+            <button onClick={() => window.open('https://play.google.com/store/apps/details?id=com.quocs.polar', '__blank')}>Android</button>
+            <button onClick={() => window.open('https://apps.apple.com/us/app/polar-write/id1553761881', '__blank')}>iPhone and iPad</button>
           </div>
         </div>
         <div className="download-col">
