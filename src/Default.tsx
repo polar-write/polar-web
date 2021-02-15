@@ -93,7 +93,17 @@ const Default: React.FC<DefaultProps> = () => {
         </>
       ) : (
         <>
-          <QRCode value={syncCode} bgColor='#FBF6E7' size={200} imageSettings={{src: isElectron() ? 'http://polar.quocs.com/logo192.png' : '/logo192.png', width: 40, height: 40}} />
+          <QRCode
+            value={syncCode}
+            bgColor='#FBF6E7'
+            size={200}
+            imageSettings={{
+              src: isElectron() ? 'http://polar.quocs.com/logo192.png' : '/logo192.png', 
+              width: 30,
+              height: 30,
+              excavate: false,
+            }}
+          />
           <p className="last-sync">Last sync: {lastSync ? moment(lastSync).calendar() : 'Unknown'}</p>
           <div className="login-options">
             <CopyToClipboard text={syncCode} onCopy={() => toast.success('Your sync code copied to clipboard!')}>

@@ -61,7 +61,17 @@ function PolarEditor() {
   }
 
   function handleExport() {
-    toast.error('Sorry, we are working on it!');
+    if (!note?.content) {
+      toast.error('Nothing to export!');
+      return;
+    }
+    const element = document.createElement("a");
+    const file = new Blob([note.content], {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = `polar-${id}.md`;
+    document.body.appendChild(element);
+    element.click();
+    toast.success('Note exported!');
     setShowMenu(false);
   }
 
