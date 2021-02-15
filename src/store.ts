@@ -5,9 +5,9 @@ import { persist } from 'zustand/middleware';
 export interface INote {
   id: string;
   content: string;
-  updatedAt: Date;
-  createdAt: Date;
-  removedAt?: Date | null;
+  updatedAt: number;
+  createdAt: number;
+  removedAt?: number | null;
   justSynced?: boolean;
 }
 
@@ -49,8 +49,8 @@ export const useStore = create<State>(
           {
             id,
             content: '',
-            createdAt: new Date(),
-            updatedAt: new Date(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
           },
           ...state.notes,
         ],
@@ -65,8 +65,8 @@ export const useStore = create<State>(
           {
             id,
             content,
-            createdAt: new Date(),
-            updatedAt: new Date(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
           },
           ...state.notes,
         ],
@@ -78,15 +78,15 @@ export const useStore = create<State>(
       notes: state.notes.map(note => note.id === id ? {
         ...note,
         content,
-        updatedAt: new Date(),
+        updatedAt: Date.now(),
       } : note),
     })),
     deleteNote: (id) => set((state: State) => ({
       ...state,
       notes: state.notes.map(note => note.id === id ? {
         ...note,
-        updatedAt: new Date(),
-        removedAt: new Date(),
+        updatedAt: Date.now(),
+        removedAt: Date.now(),
       } : note),
     })),
     removeJustSynced: (id) => set((state: State) => ({
@@ -100,6 +100,6 @@ export const useStore = create<State>(
     lastSync: null,
     setLastSync: () => set((state: State) => ({...state, lastSync: new Date()})),
   }), {
-    name: 'polar',
+    name: '@polar1',
   }),
 );

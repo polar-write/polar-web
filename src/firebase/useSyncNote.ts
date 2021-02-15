@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import toast from 'react-hot-toast';
 
 import {streamNotes, uploadNotes} from './firestore';
-import {INote, useStore} from '../store';
+import {useStore} from '../store';
 import {useWindowSize} from '../util';
 
 function useSyncNote() {
@@ -27,13 +27,7 @@ function useSyncNote() {
       let needSync = false;
       console.log('check sync', querySnapshot.docs.length)
       querySnapshot.docs.forEach((doc: any) => {
-        const data = doc.data();
-        const note: INote = {
-          ...data,
-          updatedAt: data?.updatedAt?.toDate?.() || null,
-          createdAt: data?.createdAt?.toDate?.() || null,
-          removedAt: data?.removedAt?.toDate?.() || null,
-        };
+        const note = doc.data();
         const found = notesToSync.find(item => item.id === note.id);
         if (!found) {
           notesToSync.push({...note, justSynced: true});

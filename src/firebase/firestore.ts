@@ -46,7 +46,7 @@ export const uploadNotes = async (syncCode: string, notes: INote[]) => {
 
   const batch = db.batch();
 
-  const notesToSync = lastSync ? notes.filter(note => note.updatedAt > lastSync.toDate()) : notes;
+  const notesToSync = lastSync ? notes.filter(note => new Date(note.updatedAt) > lastSync.toDate()) : notes;
 
   console.log('notesToSync', notesToSync);
 
