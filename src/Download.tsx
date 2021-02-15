@@ -31,8 +31,8 @@ const Download = () => {
           <h2>Polar for Desktop</h2>
           <img src={desktopImage} alt="polar-desktop" />
           <div className="download-buttons">
-            <button onClick={() => window.open('https://github.com/polar-write/polar-desktop/releases/download/v1.0.0/Polar-1.0.0.dmg', '__blank')}>Mac</button>
-            <button onClick={() => window.open('https://github.com/polar-write/polar-desktop/releases/download/v1.0.0/Polar.Setup.1.0.0.exe', '__blank')}>Windows</button>
+            <button onClick={() => window.open('https://github.com/polar-write/polar-desktop/releases/download/v1.0.1/Polar-1.0.1.dmg', '__blank')}>Mac</button>
+            <button onClick={() => window.open('https://github.com/polar-write/polar-desktop/releases/download/v1.0.1/Polar.Setup.1.0.1.exe', '__blank')}>Windows</button>
           </div>
         </div>
       </div>
