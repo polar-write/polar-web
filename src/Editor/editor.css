@@ -37,7 +37,6 @@
 
 .tui-editor-defaultUI {
   border: none;
-  width: 100vw;
   overflow: hidden;
   font-family: 'Mulish', sans-serif;
 }
