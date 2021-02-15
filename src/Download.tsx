@@ -3,7 +3,7 @@ import {ChevronLeft, ChevronRight} from 'react-feather';
 
 import mobileImage from './images/polar-mobile.jpeg';
 import desktopImage from './images/polar-desktop.jpeg';
-import { useWindowSize } from './util';
+import { isElectron, useWindowSize } from './util';
 import { useStore } from './store';
 
 const Download = () => {
@@ -27,14 +27,14 @@ const Download = () => {
             <button>iPhone and iPad</button>
           </div>
         </div>
-        <div className="download-col">
+        {!isElectron() && <div className="download-col">
           <h2>Polar for Desktop</h2>
           <img src={desktopImage} alt="polar-desktop" />
           <div className="download-buttons">
-            <button>Mac</button>
+            <button onClick={() => window.open('https://github.com/polar-write/polar-desktop/releases/download/1.0.0/Polar-1.0.0.dmg', '__blank')}>Mac</button>
             <button>Windows</button>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   )
