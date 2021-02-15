@@ -39,7 +39,12 @@ export const useStore = create<State>(
     showList: true,
     toggleShowList: (show) => set((state: State) => ({...state, showList: show})),
 
-    notes: [],
+    notes: [{
+      id: shortid(),
+      content: `# Welcome to Polar!\n> Just an editor I guess 🐻‍❄️.\n\n- Made for markdown lovers.\n- Distractions free.\n- Sync across your devices.\n\nWanna *contact*, ~~feature request~~ or **give support**: [quocs.com](https://quocs.com).\n`,
+      updatedAt: Date.now(),
+      createdAt: Date.now(),
+    }],
     setNotes: (notes) => set((state: State) => ({...state, notes})),
     newNote: () => {
       const id = shortid();
@@ -100,6 +105,6 @@ export const useStore = create<State>(
     lastSync: null,
     setLastSync: () => set((state: State) => ({...state, lastSync: new Date()})),
   }), {
-    name: '@polar1',
+    name: '@polaris',
   }),
 );

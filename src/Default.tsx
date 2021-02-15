@@ -7,7 +7,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import {useStore} from './store';
 
-import { useWindowSize } from './util';
+import { isElectron, useWindowSize } from './util';
 import { updateSyncCode } from './firebase/firestore';
 
 interface DefaultProps {}
@@ -54,7 +54,7 @@ const Default: React.FC<DefaultProps> = () => {
       )}
       {!syncCode ? (
         <>
-          <img src="/logo512.png" alt="polar" className="default-logo" />
+          <img src={isElectron() ? 'http://polar.quocs.com/logo512.png' : "/logo512.png"} alt="polar" className="default-logo" />
           <div className="login-options">
             {!showInput ? (
               <>
@@ -86,7 +86,7 @@ const Default: React.FC<DefaultProps> = () => {
         </>
       ) : (
         <>
-          <QRCode value={syncCode} bgColor='#FBF6E7' size={200} imageSettings={{src: '/logo512.png', width: 40, height: 40}} />
+          <QRCode value={syncCode} bgColor='#FBF6E7' size={200} imageSettings={{src: isElectron() ? 'http://polar.quocs.com/logo192.png' : '/logo192.png', width: 40, height: 40}} />
           <p className="last-sync">Last sync: {lastSync ? moment(lastSync).calendar() : 'Unknown'}</p>
           <div className="login-options">
             <CopyToClipboard text={syncCode} onCopy={() => toast.success('Your sync code copied to clipboard!')}>
