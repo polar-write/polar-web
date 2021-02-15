@@ -75,7 +75,14 @@ const Default: React.FC<DefaultProps> = () => {
                   className="sync-code-input"
                   value={inputValue}
                   onChange={e => setInputValue(e.target.value)}
-                  onKeyDown={e => (e.key === 'Enter') && handleEnterSyncCode()}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') {
+                      handleEnterSyncCode();
+                    } else if (e.key === 'Escape') {
+                      setInputValue('');
+                      setShowInput(false);
+                    }
+                  }}
                 />
                 <button className="login-button" onClick={handleEnterSyncCode}>
                   <LogIn />
