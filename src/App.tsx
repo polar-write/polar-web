@@ -12,6 +12,7 @@ import Editor from './Editor';
 import NoteList from './NoteList';
 import Default from './Default';
 import Download from './Download';
+import PrivacyPolicy from './PrivacyPolicy';
 import './App.css';
 import {useStore} from './store';
 import useSyncNote from './firebase/useSyncNote';
@@ -36,6 +37,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Default />
+            </Route>
+            <Route path="/privacy-policy" exact>
+              <PrivacyPolicy />
             </Route>
             <Route path="/download" exact>
               <Download />
